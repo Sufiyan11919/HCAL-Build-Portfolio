@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sufiyan Shaikh | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div id="top"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <span class="brand-mark">SS</span>
+        <span class="brand-text">Sufiyan Shaikh</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#hobbies">Hobbies</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="section hero" id="about">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Computer Science • Portfolio</p>
+          <h1>Hi, I’m <span class="accent">Sufiyan</span>.</h1>
+          <p class="lead">
+            I’m building skills in software engineering and human-centered AI. I enjoy creating clean,
+            usable interfaces and learning how large-scale systems work. This page highlights a few projects,
+            hobbies, and a way to contact me.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn ghost" href="#contact">Contact Me</a>
+          </div>
+
+          <div class="meta">
+            <div class="meta-card">
+              <h3>Skills</h3>
+              <p>ML • AI • NLP • Python • Go</p>
+            </div>
+            <div class="meta-card">
+              <h3>Focus</h3>
+              <p>Human-Centered AI • NLP • Responsible AI</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <img
+            class="profile-img"
+            src="images/profile.jpg"
+            alt="Profile photo of Sufiyan"
+            width="520"
+            height="520"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <header class="section-head">
+          <h2>Projects</h2>
+          <p class="muted">
+            Here are a few projects I’ve worked on. (Links can be updated to your GitHub later.)
+          </p>
+        </header>
+
+        <div class="cards">
+          <article class="card">
+            <h3>File Transfer Client/Server (Go + Protobuf)</h3>
+            <p>
+              Built a TCP-based file transfer suite using Protocol Buffers for the control plane.
+              Focused on reliability (checksums) and clean message handling.
+            </p>
+            <a class="link" href="https://github.com/usf-cs677-sp26/l3-grandmastergogo" target="_blank" rel="noopener">View on GitHub</a>
+          </article>
+
+          <article class="card">
+            <h3>Log Analyzer (Warehouse-Scale Concepts)</h3>
+            <p>
+              Created a log analysis tool and optimized parsing to reduce allocations. Explored scalability concerns
+              like memory overhead and GC pressure.
+            </p>
+            <a class="link" href="https://github.com/usf-cs677-sp26/l1-Sufiyan11919" target="_blank" rel="noopener">View on GitHub</a>
+          </article>
+
+          <article class="card">
+            <h3>Human-Centered AI Coursework</h3>
+            <p>
+              Worked on assignments involving usability evaluation, bias/fairness concepts, and interface design
+              trade-offs in AI assistants.
+            </p>
+            <a class="link" href="https://github.com/Sufiyan11919/Portfolio-React" target="_blank" rel="noopener">View on GitHub</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="hobbies">
+      <div class="container">
+        <header class="section-head">
+          <h2>Hobbies</h2>
+          <p class="muted">A few things I enjoy outside class and projects.</p>
+        </header>
+
+        <div class="cards">
+          <article class="card hobby">
+            <div class="hobby-top">
+              <img
+                class="hobby-img"
+                src="images/hobby-gym.jpg"
+                alt="Gym or fitness themed photo"
+                width="640"
+                height="420"
+              />
+            </div>
+            <h3>Fitness</h3>
+            <p>
+              I like staying active and tracking progress. It helps me stay disciplined and focused.
+            </p>
+            <a class="link" href="https://www.cdc.gov/physicalactivity/basics/index.htm" target="_blank" rel="noopener">More info</a>
+          </article>
+
+          <article class="card hobby">
+            <div class="hobby-top">
+              <img
+                class="hobby-img"
+                src="images/hobby-tech.jpg"
+                alt="Laptop and code on screen"
+                width="640"
+                height="420"
+              />
+            </div>
+            <h3>Learning Tech</h3>
+            <p>
+              I enjoy exploring new tools, reading about systems, and improving how I write clean, maintainable code.
+            </p>
+            <a class="link" href="https://roadmap.sh/" target="_blank" rel="noopener">More info</a>
+          </article>
+
+          <article class="card hobby">
+            <div class="hobby-top">
+              <img
+                class="hobby-img"
+                src="images/hobby-travel.jpg"
+                alt="City skyline or travel photo"
+                width="640"
+                height="420"
+              />
+            </div>
+            <h3>Exploring</h3>
+            <p>
+              I like visiting new places and trying new food. It’s a fun way to reset and get fresh ideas.
+            </p>
+            <a class="link" href="https://www.lonelyplanet.com/destinations" target="_blank" rel="noopener">More info</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <header class="section-head">
+          <h2>Contact</h2>
+        </header>
+
+        <div class="contact-grid">
+          <form class="contact-form" action="#" method="post">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Write your message..." required></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">Send Message</button>
+          </form>
+
+          <aside class="contact-aside">
+            <div class="aside-card">
+              <h3>Quick Links</h3>
+              <ul class="aside-list">
+                <li><a href="https://github.com/Sufiyan11919" class="link" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/sufiyan-shaikh-945084199" class="link" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:sshaikh7@dons.usfca.edu" class="link">sshaikh7@dons.usfca.edu</a></li>
+              </ul>
+            </div>
+
+            <div class="aside-card">
+              <h3>Location</h3>
+<p class="muted">San Francisco Bay Area</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span class="year">2026</span> Sufiyan Shaikh. All rights reserved.</p>
+      <a class="link" href="#top">Back to top</a>
+    </div>
+  </footer>
+</body>
+</html>
