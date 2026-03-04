@@ -21,7 +21,6 @@ html {
 
 body {
   margin: 0;
-  padding-top: 72px;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   background: var(--bg);
   color: var(--text);
@@ -57,19 +56,9 @@ a {
   left: 12px;
 }
 
-/* Build 2 changes: precedence, fixed nav, pseudo-classes/elements, responsive updates */
-/* Build 2: rule precedence base selector */
-h2 {
-  color: #334155;
-  font-size: 1.5rem;
-}
-
-/* Build 2: fixed navbar */
 .site-header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
   z-index: 50;
   background: rgba(246, 247, 249, 0.8);
   backdrop-filter: blur(10px);
@@ -114,7 +103,7 @@ h2 {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: flex-end;
 }
 
 .nav-links a {
@@ -158,12 +147,6 @@ h2 {
   margin: 0 0 6px;
   font-size: clamp(1.4rem, 2vw, 1.9rem);
   color: var(--navy);
-}
-/* Build 2: pseudo-element before heading */
-
-.section-head h2::before {
-  content: "• ";
-  color: var(--navy-2);
 }
 
 .muted {
@@ -213,17 +196,6 @@ h2 {
 .accent {
   color: var(--navy);
   position: relative;
-}
-/* Build 2: pseudo-element with absolute positioning */
-
-.accent::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 100%;
-  height: 2px;
-  background: var(--navy);
 }
 
 .lead {
@@ -399,17 +371,6 @@ code {
   outline-offset: 2px;
 }
 
-/* Build 2: active button states */
-.btn.primary:active {
-  background: #061324;
-  transform: translateY(0);
-}
-
-.btn.ghost:active {
-  background: #eef2f7;
-  transform: translateY(0);
-}
-
 .contact-grid {
   display: flex;
   gap: 18px;
@@ -523,29 +484,6 @@ input:focus, textarea:focus {
 
   .hero {
     padding-top: 36px;
-  }
-}
-
-/* Build 2: responsive card stack on smaller screens */
-@media (max-width: 768px) {
-  .cards {
-    flex-direction: column;
-  }
-}
-/* Build 2: phone spacing and font-size adjustments */
-@media (max-width: 480px) {
-  .section {
-    padding: 48px 0;
-  }
-
-  .section-head h2 {
-    font-size: 1.25rem;
-  }
-
-  .nav-links a,
-  .btn {
-    font-size: 0.9rem;
-    padding: 8px 10px;
   }
 }
 
