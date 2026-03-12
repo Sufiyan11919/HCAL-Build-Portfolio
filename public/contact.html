@@ -3,40 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
+    <title>Chatbot</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <section class="section" id="contact">
       <div class="container">
         <header class="section-head">
-          <h2>Contact</h2>
+          <h2>Chatbot</h2>
         </header>
 
         <div class="contact-grid">
-          <form id="contact-form" class="contact-form" action="#" method="post">
+          <form id="contact-form" class="contact-form">
             <div class="field">
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" required />
+              <label for="message">Your Prompt</label>
+              <textarea id="message" name="message" rows="6" placeholder="Ask me anything..." required></textarea>
             </div>
 
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" required />
-            </div>
-
-            <div class="field">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="6" placeholder="Write your message..." required></textarea>
-            </div>
-
-            <button class="btn primary" type="submit">Send Message</button>
+<button id="submit-btn" class="btn primary" type="submit">Submit</button>
           </form>
-          <div id="response-message"></div>
+          <div id="response"></div>
         </div>
       </div>
     </section>
 
-    <script src="contact.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

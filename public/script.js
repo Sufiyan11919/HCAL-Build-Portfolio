@@ -1,13 +1,4 @@
-// Using const because the name will not change
-// const userName = "Sufiyan";
-
-// Using let because age could be updated 
-// let userAge = 23;
-
-// Using const because student status remain the same for this session
-// const isStudent = true;
-
-
+// ── Quiz functionality (index.html) ──────────────────────────────────────────
 const skills = ["HTML", "CSS", "JavaScript"];
 
 function greetUser(name) {
@@ -41,7 +32,63 @@ function startQuiz() {
   displaySkills();
 }
 
-document.getElementById("start-quiz").addEventListener("click", startQuiz);
+const startQuizBtn = document.getElementById("start-quiz");
+if (startQuizBtn) {
+  startQuizBtn.addEventListener("click", startQuiz);
+}
 
-  // greetUser(userName);
-  // checkAge(userAge);
+// Event logs
+function logEvent(type, element) {
+  fetch('/log-event', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      eventType: type,
+      elementName: element,
+      timestamp: new Date().toString()
+    })
+  }).catch(err => console.error('Failed to log event:', err));
+}
+
+const submitBtn = document.getElementById('submit-btn');
+const messageInput = document.getElementById('message');
+
+if (submitBtn) {
+  submitBtn.addEventListener('click', () => logEvent('click', 'submit-button'));
+}
+if (messageInput) {
+  messageInput.addEventListener('mouseover', () => logEvent('hover', 'message-input'));
+  messageInput.addEventListener('focus', () => logEvent('focus', 'message-input'));
+}
+
+// chatbot
+const contactForm = document.getElementById("contact-form");
+if (contactForm) {
+  contactForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const message = document.getElementById("message").value;
+    const responseDiv = document.getElementById("response");
+
+    responseDiv.textContent = "waiting the response"
+
+    try {
+      const res = await fetch("/submit-prompt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+      });
+
+      const data = await res.json();
+
+      if (data.botResponse) {
+        responseDiv.textContent = data.botResponse;
+      } else {
+        responseDiv.textContent = "Error: " + (data.error || "Unknown error");
+      }
+    } catch (err) {
+      console.error(err);
+      responseDiv.textContent = "An error occurred. Please try again.";
+    }
+  });
+}
