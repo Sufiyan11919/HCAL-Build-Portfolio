@@ -13,6 +13,15 @@
           <h2>Chatbot</h2>
         </header>
 
+        <div style="margin-bottom: 24px;">
+          <h2>Upload Document</h2>
+          <input type="file" id="document-upload" accept=".pdf,.txt">
+          <button id="upload-btn" class="btn primary" type="button">Upload</button>
+
+          <h3>Uploaded Documents</h3>
+          <ul id="documents-list"></ul>
+        </div>
+
         <div class="contact-grid">
           <form id="contact-form" class="contact-form">
             <div class="field">
@@ -20,7 +29,7 @@
               <textarea id="message" name="message" rows="6" placeholder="Ask me anything..." required></textarea>
             </div>
 
-<button id="submit-btn" class="btn primary" type="submit">Submit</button>
+            <button id="submit-btn" class="btn primary" type="submit">Submit</button>
           </form>
           <div id="response"></div>
         </div>

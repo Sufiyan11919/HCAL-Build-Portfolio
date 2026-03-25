@@ -3,26 +3,29 @@ const skills = ["HTML", "CSS", "JavaScript"];
 
 function greetUser(name) {
   console.log(`Hello, ${name}!`);
-  document.getElementById("greeting").textContent = `Hello, ${name}!`;
+  const greetingEl = document.getElementById("greeting");
+  if (greetingEl) greetingEl.textContent = `Hello, ${name}!`;
 }
 
 function checkAge(age) {
+  const ageCheckEl = document.getElementById("age-check");
   if (age < 5) {
     console.log("You're too young to take this quiz.");
-    document.getElementById("age-check").textContent = "You're too young to take this quiz.";
+    if (ageCheckEl) ageCheckEl.textContent = "You're too young to take this quiz.";
   } else {
     console.log("Welcome to the quiz!");
-    document.getElementById("age-check").textContent = "Welcome to the quiz!";
+    if (ageCheckEl) ageCheckEl.textContent = "Welcome to the quiz!";
   }
 }
 
 function displaySkills() {
-  document.getElementById("skills-list").textContent = "Skills: " + skills.join(", ");
+  const skillsListEl = document.getElementById("skills-list");
+  if (skillsListEl) skillsListEl.textContent = "Skills: " + skills.join(", ");
 }
 
 function startQuiz() {
-  const userName = document.getElementById("username").value;
-  const userAge = document.getElementById("age").value;
+  const userName = document.getElementById("username")?.value;
+  const userAge = document.getElementById("age")?.value;
 
   console.log("Name:", userName);
   console.log("Age:", userAge);
@@ -70,7 +73,7 @@ if (contactForm) {
     const message = document.getElementById("message").value;
     const responseDiv = document.getElementById("response");
 
-    responseDiv.textContent = "waiting the response"
+    responseDiv.textContent = "waiting the response";
 
     try {
       const res = await fetch("/submit-prompt", {
@@ -92,3 +95,65 @@ if (contactForm) {
     }
   });
 }
+
+// document upload
+const uploadBtn = document.getElementById("upload-btn");
+
+if (uploadBtn) {
+  uploadBtn.addEventListener("click", async () => {
+    const fileInput = document.getElementById("document-upload");
+    const file = fileInput.files[0];
+
+    if (!file) {
+      alert("Choose a file first.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("document", file);
+
+    try {
+      const response = await fetch("/upload-document", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (!response.ok) {
+        alert(data.error || "Failed to upload document.");
+        return;
+      }
+
+      fileInput.value = "";
+      await loadDocuments();
+    } catch (error) {
+      console.error("Upload error:", error);
+      alert("An error occurred while uploading the document.");
+    }
+  });
+}
+
+async function loadDocuments() {
+  const documentsList = document.getElementById("documents-list");
+  if (!documentsList) return;
+
+  try {
+    const response = await fetch("/documents");
+    const docs = await response.json();
+
+    documentsList.innerHTML = "";
+
+    docs.forEach((doc) => {
+      const li = document.createElement("li");
+      li.textContent = `${doc.filename} - ${doc.processingStatus}`;
+      documentsList.appendChild(li);
+    });
+  } catch (error) {
+    console.error("Failed to load documents:", error);
+    documentsList.innerHTML = "<li>Failed to load documents.</li>";
+  }
+}
+
+loadDocuments();
