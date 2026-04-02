@@ -1,41 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Chatbot</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section class="section" id="contact">
-      <div class="container">
-        <header class="section-head">
-          <h2>Chatbot</h2>
-        </header>
+  <section class="section" id="contact">
+    <div class="container">
+      <header class="section-head">
+        <h2>Portfolio Chatbot</h2>
+        <p class="muted">Upload documents, choose a retrieval method, and ask grounded questions using RAG.</p>
+      </header>
 
-        <div style="margin-bottom: 24px;">
-          <h2>Upload Document</h2>
-          <input type="file" id="document-upload" accept=".pdf,.txt">
-          <button id="upload-btn" class="btn primary" type="button">Upload</button>
+      <div class="rag-layout">
+        <aside class="rag-sidebar">
+          <div class="aside-card">
+            <h3>Upload Document</h3>
+            <form id="upload-form" class="stack-form">
+              <div class="field">
+                <label for="document-file">Choose a file</label>
+                <input id="document-file" name="document" type="file" accept=".pdf,.txt,.md" required>
+              </div>
+              <button id="upload-btn" class="btn primary" type="submit">Upload Document</button>
+            </form>
+            <p id="upload-status" class="muted status-text">No document uploaded yet.</p>
+          </div>
 
-          <h3>Uploaded Documents</h3>
-          <ul id="documents-list"></ul>
-        </div>
+          <div class="aside-card">
+            <h3>Retrieval Method</h3>
+            <div class="field">
+              <label for="retrieval-method">Select retrieval method</label>
+              <select id="retrieval-method" name="retrievalMethod">
+                <option value="semantic">Semantic (Embeddings)</option>
+                <option value="tfidf">TF-IDF (Keyword)</option>
+              </select>
+            </div>
+            <p class="muted">Semantic compares embeddings. TF-IDF matches keywords and term frequency.</p>
+          </div>
 
-        <div class="contact-grid">
+          <div class="aside-card">
+            <h3>Uploaded Documents</h3>
+            <div id="document-list" class="document-list">
+              <p class="muted">Loading documents...</p>
+            </div>
+          </div>
+        </aside>
+
+        <div class="chat-column">
           <form id="contact-form" class="contact-form">
             <div class="field">
               <label for="message">Your Prompt</label>
-              <textarea id="message" name="message" rows="6" placeholder="Ask me anything..." required></textarea>
+              <textarea id="message" name="message" rows="6" placeholder="Ask a question about your uploaded documents..." required></textarea>
             </div>
-
-            <button id="submit-btn" class="btn primary" type="submit">Submit</button>
+            <button id="submit-btn" class="btn primary" type="submit">Submit Prompt</button>
           </form>
-          <div id="response"></div>
+
+          <section class="result-card">
+            <h3>Chatbot Response</h3>
+            <div id="response" class="response-text">Responses will appear here.</div>
+          </section>
+
+          <section class="result-card">
+            <h3>Retrieved Evidence</h3>
+            <div id="evidence-list" class="evidence-list">
+              <p class="muted">Retrieved chunks and relevance scores will appear here.</p>
+            </div>
+          </section>
+
+          <section class="result-card">
+            <h3>Confidence Metrics</h3>
+            <div id="confidence-metrics" class="metrics-grid">
+              <p class="muted">Confidence metrics will appear here.</p>
+            </div>
+          </section>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

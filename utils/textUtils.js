@@ -1,67 +1,63 @@
-/**
- * Clean text by removing extra whitespace and normalizing characters
- * @param {string} text - Raw text to clean
- * @returns {string} Cleaned text
- */
-function cleanText(text) {
-  if (!text || typeof text !== 'string') {
-    return '';
-  }
+const WORD_SPLIT_REGEX = /\s+/;
 
-  return text
-    // Replace multiple spaces with single space
-    .replace(/\s+/g, ' ')
-    // Remove leading/trailing whitespace
-    .trim()
-    // Normalize unicode characters
-    .normalize('NFKC');
+function normalizeWhitespace(text = '') {
+  return text.replace(/\s+/g, ' ').trim();
 }
 
-/**
- * Chunk text using sliding window approach
- * @param {string} text - Text to chunk
- * @param {number} chunkSize - Size of each chunk in characters (default: 1000)
- * @param {number} overlap - Overlap between chunks in characters (default: 200)
- * @returns {Array} Array of chunk objects with {chunkIndex, text, startChar, endChar}
- */
-function chunkText(text, chunkSize = 1000, overlap = 200) {
-  if (!text || typeof text !== 'string') {
+function truncateText(text = '', maxChars = 6000) {
+  if (text.length <= maxChars) {
+    return text;
+  }
+
+  return `${text.slice(0, maxChars)}...`;
+}
+
+function chunkText(text, options = {}) {
+  const {
+    chunkSize = 220,
+    overlap = 40,
+  } = options;
+
+  const normalized = normalizeWhitespace(text);
+  if (!normalized) {
     return [];
   }
 
-  // Clean the text first
-  const cleanedText = cleanText(text);
-
-  if (cleanedText.length === 0) {
-    return [];
+  const words = normalized.split(WORD_SPLIT_REGEX).filter(Boolean);
+  if (words.length <= chunkSize) {
+    return [normalized];
   }
 
   const chunks = [];
-  let start = 0;
-  let index = 0;
+  const step = Math.max(1, chunkSize - overlap);
 
-  while (start < cleanedText.length) {
-    const end = Math.min(start + chunkSize, cleanedText.length);
-    const chunkText = cleanedText.slice(start, end);
+  for (let index = 0; index < words.length; index += step) {
+    const chunkWords = words.slice(index, index + chunkSize);
+    if (!chunkWords.length) {
+      continue;
+    }
 
-    chunks.push({
-      chunkIndex: index,
-      text: chunkText,
-      startChar: start,
-      endChar: end
-    });
+    chunks.push(chunkWords.join(' '));
 
-    // Move start position forward, accounting for overlap
-    start += (chunkSize - overlap);
-    index++;
-
-    // Prevent infinite loop if overlap >= chunkSize
-    if (overlap >= chunkSize) {
-      start = end;
+    if (index + chunkSize >= words.length) {
+      break;
     }
   }
 
   return chunks;
 }
 
-module.exports = { cleanText, chunkText };
+function tokenizeText(text = '') {
+  return normalizeWhitespace(text)
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(WORD_SPLIT_REGEX)
+    .filter(token => token.length > 2);
+}
+
+module.exports = {
+  normalizeWhitespace,
+  truncateText,
+  chunkText,
+  tokenizeText,
+};

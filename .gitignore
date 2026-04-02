@@ -1,2 +1,5 @@
 node_modules/
-.envuploads/
+.env
+.vscode/
+.DS_Store
+

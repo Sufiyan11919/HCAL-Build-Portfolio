@@ -399,7 +399,7 @@ label {
   color: var(--navy);
 }
 
-input, textarea {
+input, textarea, select {
   width: 100%;
   padding: 12px 12px;
   border-radius: 12px;
@@ -414,7 +414,7 @@ input::placeholder, textarea::placeholder {
   color: #94a3b8;
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: rgba(11, 31, 58, 0.55);
   box-shadow: 0 0 0 4px rgba(11, 31, 58, 0.12);
@@ -431,6 +431,124 @@ input:focus, textarea:focus {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.rag-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.rag-sidebar,
+.chat-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.stack-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.document-list,
+.evidence-list,
+.metrics-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.document-item,
+.evidence-item,
+.metric-card,
+.result-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.document-item,
+.evidence-item,
+.metric-card,
+.result-card {
+  padding: 16px;
+}
+
+.document-item-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status-badge.completed {
+  background: rgba(16, 185, 129, 0.14);
+  color: #047857;
+}
+
+.status-badge.processing {
+  background: rgba(59, 130, 246, 0.12);
+  color: #1d4ed8;
+}
+
+.status-badge.failed {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+}
+
+.small-text {
+  font-size: 0.92rem;
+}
+
+.status-text {
+  margin: 0;
+}
+
+.error-text {
+  color: #b91c1c;
+}
+
+.result-card h3,
+.evidence-item h4 {
+  margin: 0 0 10px;
+  color: var(--navy);
+}
+
+.response-text {
+  white-space: pre-wrap;
+  color: var(--text);
+}
+
+.metrics-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.metric-value {
+  color: var(--navy);
+  font-size: 1.05rem;
 }
 
 .aside-card {
@@ -485,5 +603,8 @@ input:focus, textarea:focus {
   .hero {
     padding-top: 36px;
   }
-}
 
+  .rag-layout {
+    grid-template-columns: 1fr;
+  }
+}
